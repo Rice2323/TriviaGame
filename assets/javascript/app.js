@@ -1,16 +1,19 @@
-var correctAnswers;
-var remainingQuesions;
+var correctAnswers = 0;
+var remainingQuestions = 10;
 var questionAsked;
 var answers;
 var pick;
 var intervalId;
-var counter = 10;
+var counter = 8;
 var chooseRandomAnswer;
+var userSelection;
 
 
 
 var askQuestion = $("#questionsBox");
 var askAnswers = $("#answerList");
+var questionsLeft = $("#remainingBox");
+var questionsCorrect = $("#correctBox");
 
 
 
@@ -48,40 +51,44 @@ var questionSet = [
 
 ];
 
+var backgroundImages = [
+
+     'url(assets/images/Batman.jpg)', 'url(assets/images/greenlantern.jpg)', 
+    'url(assets/images/wonderwoman.jpg)', 'url(assets/images/superman.jpg)', 'url(assets/images/SuperFriends.jpg)', 'url(assets/images/shazam.png)', 'url(assets/images/JusticeLeague.jpg)',
+];
+
 var selector = questionSet.length;
 var selected = 4;
+var arrayCopy = questionSet;
 
-console.log(questionSet[1].choices);
-console.log(selected);
+
+
 
 
 
 
 
 function timeStart(){
+    changeBackground();
     clearInterval(intervalId);
     intervalId = setInterval(countDown, 1000);
     }
     
     function countDown(){
     
+        counter--;
+        var time = counter + 1;
+    $("#timerBox").html("Time Remaining: " + time);
     
-    $("#timerBox").html("<h2>Time Remaining: </h2>" + counter);
-    counter--;
 
-    if (counter === 0 ){
-        nextQuestion();
-        counter = 10;
+    if (counter < 0 ){
+        counter = 8;
         timeStart();
+        pullQuestion();
     }
     
     }
 
-    
-    
-    function nextQuestion(){
-        clearInterval(intervalId);
-    }
 
     function pullQuestion(){
         pick = Math.floor(Math.random()* selector);
@@ -93,46 +100,65 @@ function timeStart(){
              
                 chooseRandomAnswer = Math.floor(Math.random()* selected);
                 answers = questionSet[pick].choices[chooseRandomAnswer];
-                askAnswers.append("<li>"+answers+"</li>");
+                askAnswers.append("<li>"+answers+"</li><br>");
                 questionSet[pick].choices.splice(chooseRandomAnswer,1);
                 selected--;
             }
+
             selected = 4;
         }
+        correctChoice = arrayCopy[pick].choices[0];
+        $("ol").empty();
         generateAnswers();
         
         
         questionSet.splice(pick,1);
         selector--;
+        $("li").on("click", function(){
+             userSelection = $(this).text();
+            console.log(userSelection);
+            
+            if (userSelection === correctChoice){
+                correctAnswers++;
+                questionsCorrect.html("Correct Answers: " + correctAnswers);
+                remainingQuestions--;
+                questionsLeft.html("Remaining Questions: " + remainingQuestions);
+                counter = 0;
+            }
+
+            else {
+                remainingQuestions--;
+                questionsLeft.html("Remaining Questions: " + remainingQuestions);
+                counter = 0;
+
+            }
+
+            if (remainingQuestions === 0) {
+                // clearInterval(intervalId);
+                alert("You have answered " + correctAnswers + " out of 10 correct!");
+            }
+            
+            });
+
+            
         
         
         
         }
 
-function askNow(){
-    
-Questions = setInterval(pullQuestion, 10000);
-
-
+function changeBackground(){
+var picker = Math.floor(Math.random()* backgroundImages.length);
+    $('body').css('background-image', backgroundImages[picker]);
 }
+
 
 function startQuiz(){
  {
     timeStart();
-    askNow();
-    askQuestion.html("");
-    
-    
-    
-
-
-
-
-
-
-
 }
 }
 
 startQuiz();
+
+
 

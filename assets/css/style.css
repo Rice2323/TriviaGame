@@ -1,0 +1,50 @@
+body{
+    
+    background-size: 100%;
+    background-repeat: no-repeat;
+}
+
+#container{
+    
+    color: firebrick;
+}
+
+#heading{ 
+
+    text-align: center;
+    font-size: 30px;
+    font-family: 'Luckiest Guy', cursive;
+    width: 960px;
+    background-color: bisque;
+    opacity: .75;
+
+}
+
+#timerBox {
+    text-align: center;
+    font-size: 50px;
+    font-family: 'Righteous', cursive;
+    width: 630px;
+    background-color: slateblue;
+    opacity: .50;
+}
+
+#questionsBox{
+    text-align: center;
+    font-size: 25px;
+    font-family: 'Luckiest Guy', cursive;
+    width: 630px;
+    background-color: chocolate;
+    opacity: .50;
+    color: aliceblue;
+
+}
+
+li{
+    background-color: rgb(22, 161, 41);
+    width: 250px;
+    font-family: 'Righteous', cursive;
+    font-size: 25px;
+    color: azure;
+    opacity: .5;
+}
