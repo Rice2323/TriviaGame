@@ -26,7 +26,7 @@ body{
     font-family: 'Righteous', cursive;
     width: 630px;
     background-color: slateblue;
-    opacity: .50;
+    opacity: .65;
 }
 
 #questionsBox{
@@ -35,7 +35,7 @@ body{
     font-family: 'Luckiest Guy', cursive;
     width: 630px;
     background-color: chocolate;
-    opacity: .50;
+    opacity: .65;
     color: aliceblue;
 
 }
@@ -46,5 +46,5 @@ li{
     font-family: 'Righteous', cursive;
     font-size: 25px;
     color: azure;
-    opacity: .5;
+    opacity: .65;
 }

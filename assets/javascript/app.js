@@ -147,6 +147,7 @@ function pullQuestion() {
 
             alert("You have answered " + correctAnswers + " out of 10 correct!");
             
+            startQuiz();
         }
 
     });
